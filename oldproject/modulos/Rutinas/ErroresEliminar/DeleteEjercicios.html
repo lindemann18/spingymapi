@@ -1,0 +1,19 @@
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>    
+        <th class="text-center">EJERCICIO  </th>   
+        <th class="text-center">DESCRIPCION EJERCICIO</th> 
+        <th class="text-center">RUTINA</th> 
+        <th class="text-center">DESCRIPCION RUTINA</th>  
+        
+    </tr>
+ </thead>
+<tbody>
+    <tr ng-repeat="rut in Rutinas " class="text-center">
+        <td>{{rut.nb_ejercicio }}</td>
+        <td>{{rut.desc_ejercicio |uppercase}}</td>
+        <td>{{rut.nb_rutina |uppercase}}</td>
+        <td>{{rut.desc_rutina }}</td>
+    </tr>
+ </tbody>
+</table>

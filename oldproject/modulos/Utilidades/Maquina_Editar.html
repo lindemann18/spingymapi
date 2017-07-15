@@ -1,0 +1,107 @@
+<style>
+.Cuestionario{margin-right: 20%;}
+.Botones {margin-right: 4%;}
+</style>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Utilidades
+                        <small>Registrar M&aacute;quinas</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li>Máquinas</li>
+                        <li class="active">Editar Máquina</li>
+                    </ol>
+                </section>
+                
+                
+                <!-- Main content -->
+                <section class="content">
+                	<!-- HEADER DEL CONTENIDO-->
+                    <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  <strong>Atención!</strong> <p id="ErrorTexto"></p>
+			     </div>
+                    <h4 class="page-header">
+                        Formulario de M&aacute;quinas
+                        <small>
+                        	En este apartado podrá registrar las M&aacute;quinas de <span class="text-red">spin gym</span>.
+                        </small>
+                    </h4>
+                    <!-- HEADER DEL CONTENIDO-->
+
+                    <!-- FORMULARIO -->
+                    <form ng-submit="EditarMaquina()" role="form">
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    <div class="row">
+                    	<!-- COLUMNA IZQUIERDA -->
+                    	<div class="col-md-8 pull-right Cuestionario">
+                        	<!-- CAJA -->
+							<div class="box box-primary">
+                                <!-- HEADER DE LA CAJA -->
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos M&aacute;quina</h3>
+                                </div>
+                                <!-- HEADER DE LA CAJA -->
+                                    
+                                <!-- CUERPO DE LA CAJA -->
+                                <div class="box-body">
+                                	
+                                    <!-- input con el id de quien lo registró-->
+                                    <div class="form-group">
+                                        <label for="nb_cliente">Nombre  </label>
+                                        <input type="text" name="nb_maquina" id="nb_maquina"  class="form-control" 
+                                        placeholder="Nombre de m&aacute;quina" ng-model="maquina.nb_maquina" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Descripci&oacute;n</label>
+                                        <textarea name="desc_maquina" id="desc_maquina" class="form-control requerido" ng-model="maquina.desc_maquina" required></textarea>
+                                    </div>
+                                    
+                                      <div class="form-group">
+                                        <label for="de_email">No. M&aacute;quina</label>
+                                        <input type="text" name="num_maquina" id="num_maquina"  class="form-control" 
+                                        placeholder="No. m&aacute;quina" ng-model="maquina.num_maquina" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Genero de Máquina</label>
+                                        <select class="form-control" ng-model="maquina.id_categoriamaquina"
+							ng-options="tipmaq.id as tipmaq.nb_categoriamaquina for tipmaq in tipoMaquinas" class="form-control" required >
+                                        <option value="">Seleccionar...</option>
+                                     	
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- CUERPO DE LA CAJA -->
+
+                                <!-- FOOTER DE LA CAJA -->
+                                <div class="box-footer">
+                                     Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                                </div>
+                                <!-- FOOTER DE LA CAJA -->
+                            </div>
+                            <!-- CAJA -->
+                        </div>
+                        <!-- COLUMNA IZQUIERDA -->
+                        
+                       
+                    </div>
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    
+                    <div class="row Botones">
+                    	<div class="col-md-6" align="right">
+                    		<button type="submit" class="btn btn-primary">EDITAR</button>
+                    	</div>
+                        <div class="col-md-6" align="left"><button type="reset" class="btn btn-danger" ng-click="Redirigir('Maquinas')">CANCELAR</button></div>
+                    </div>
+                    </form>
+                    <!-- FORMULARIO -->
+                </section>
+            </aside>
+
+</div>

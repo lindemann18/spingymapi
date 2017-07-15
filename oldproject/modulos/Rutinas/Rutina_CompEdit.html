@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="css/bootstrap-duallistbox.css">
+<style>
+.Cuestionario{margin-right: 20%;}
+.Botones {margin-right: 4%;}
+</style>
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Rutinas
+            <small>Registrar Ejercicios</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li class="active">Rutinas</li>
+        </ol>
+    </section>
+    
+    
+    <!-- Main content -->
+   <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Atención!</strong> <p id="ErrorTexto"></p>
+      </div>
+        <h4 class="page-header">
+            Formulario De Rutinas
+            <small>
+            	En este apartado podrá seleccionar las rutinas para el día seleccionado de la semana,
+              	seleccione las rutinas en el día y después se definirán los ejercicios para cada una de las 
+                rutinas.
+            </small>
+        </h4>
+        <!-- HEADER DEL CONTENIDO-->
+
+        <!-- FORMULARIO -->
+        <form name="MusculosRegistrar" id="MusculosRegistrar" method="post" role="form">
+        <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+        <div class="row">
+        	<!-- COLUMNA IZQUIERDA -->
+        	<div class="col-md-8 pull-right Cuestionario">
+            	<!-- CAJA -->
+				<div class="box box-primary">
+                    <!-- HEADER DE LA CAJA -->
+                    <div class="box-header">
+                        <h3 class="box-title">Datos Rutinas</h3>
+                    </div>
+                    <!-- HEADER DE LA CAJA -->
+                        
+                    <!-- CUERPO DE LA CAJA -->
+                    <div class="box-body">
+                    	<h2>{{nombreDia}}</h2>
+                        <!-- input con el id de quien lo registró-->
+                    	<h3></h3>
+                        <div class="form-group">
+                            <label for="nb_apellidos">Categor&iacute;a</label>
+                           <select multiple="multiple" size="10" name="duallistbox_demo2" class="demo2">
+                          
+
+							 </select>
+
+                        </div>
+                        
+                        <!-- días de la rutina-->
+                        
+                        
+                    </div><!-- box-body -->
+                    <!-- CUERPO DE LA CAJA -->
+
+                    <!-- FOOTER DE LA CAJA -->
+                    <div class="box-footer">
+                         Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                    </div>
+                    <!-- FOOTER DE LA CAJA -->
+                </div>
+                <!-- CAJA -->
+            </div>
+            <!-- COLUMNA IZQUIERDA -->
+            
+           
+        </div>
+        <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+        
+        <div class="row Botones">
+        	<div class="col-md-6" align="right"><button type="button" class="btn btn-primary" ng-click="Guardar()">REGISTRAR</button></div>
+            <div class="col-md-6" align="left"><button type="reset" class="btn btn-danger" onclick="window.location='index.php?nav=Ejercicios';">CANCELAR</button></div>
+        </div>
+        </form>
+        <!-- FORMULARIO -->
+    </section>
+</aside>
+
+</div>

@@ -1,0 +1,4 @@
+[22-Oct-2014 05:36:30 UTC] PHP Warning:  mkdir(): No such file or directory in /home/asherne1/public_html/Spinpgym/modulos/Biotest/Funciones.php on line 102
+[22-Oct-2014 05:36:30 UTC] PHP Warning:  file_put_contents(TestPictures28/28CondicionFisica.jpg): failed to open stream: No such file or directory in /home/asherne1/public_html/Spinpgym/modulos/Biotest/Funciones.php on line 114
+[22-Oct-2014 05:54:56 UTC] PHP Warning:  mkdir(): No such file or directory in /home/asherne1/public_html/Spinpgym/modulos/Biotest/Funciones.php on line 102
+[22-Oct-2014 05:54:56 UTC] PHP Warning:  file_put_contents(TestPictures28/28CondicionFisica.jpg): failed to open stream: No such file or directory in /home/asherne1/public_html/Spinpgym/modulos/Biotest/Funciones.php on line 114

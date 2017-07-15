@@ -1,0 +1,104 @@
+<!-- FORMULARIO -->
+        <form ng-submit="EjecutarTest()" >
+        <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+        <div class="row">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="col-md-6">
+                <!-- CAJA -->
+                <div class="box box-primary">
+                    <!-- HEADER DE LA CAJA -->
+                    <div class="box-header">
+                        <h3 class="box-title">Formulario 1- Cuerpo</h3>
+                    </div>
+                    <!-- HEADER DE LA CAJA -->
+                        
+                    <!-- CUERPO DE LA CAJA -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="nb_cliente" class="LabelPregunta">Peso (Kilogramos)</label>
+                            <input class="form-control" ng-model="biotest.peso" required only-digits>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label for="nb_cliente" class="LabelPregunta">Altura (Centímetros)</label>
+                           <input class="form-control" ng-model="biotest.altura" required only-digits>
+                        </div>
+                    
+                      
+                    </div>
+                    <!-- CUERPO DE LA CAJA -->
+
+                    <!-- FOOTER DE LA CAJA -->
+                    <div class="box-footer">
+                         Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                    </div>
+                    <!-- FOOTER DE LA CAJA -->
+                </div>
+                <!-- CAJA -->
+            </div>
+            <!-- COLUMNA IZQUIERDA -->
+            
+            <!-- COLUMNA DERECHA -->
+            <div class="col-md-6">
+                <!-- CAJA -->
+                <div class="box box-warning">
+                    <!-- HEADER DE LA CAJA -->
+                    <div class="box-header">
+                        <h3 class="box-title">Formulario 2-Medidas</h3>
+                    </div>
+                    <!-- HEADER DE LA CAJA -->
+                    
+                    <!-- CUERPO DE LA CAJA -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="nb_cliente" class="LabelPregunta">Espalda</label>
+                           <input class="form-control" ng-model="biotest.espalda" required only-digits>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="nb_cliente" class="LabelPregunta">Pecho</label>
+                           <input class="form-control" ng-model="biotest.pecho" required only-digits>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nb_cliente" class="LabelPregunta">Abdomen</label>
+                           <input class="form-control" ng-model="biotest.abdomen" required only-digits>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nb_cliente" class="LabelPregunta">Cadera</label>
+                           <input class="form-control" ng-model="biotest.cadera" required only-digits>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label for="nb_cliente" class="LabelPregunta">Brazo</label>
+                           <input class="form-control" ng-model="biotest.brazo" required only-digits>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label for="nb_cliente" class="LabelPregunta">Muslo</label>
+                           <input class="form-control" ng-model="biotest.muslo" required only-digits>
+                        </div>
+                        
+                         
+                    </div>
+                    <!-- CUERPO DE LA CAJA -->
+                    
+                    <!-- FOOTER DE LA CAJA -->
+                    <div class="box-footer">
+                        Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                    </div>
+                    <!-- FOOTER DE LA CAJA -->
+                </div>
+                <!-- CAJA -->
+            </div>
+            <!-- COLUMNA DERECHA -->
+        </div>
+        <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+        
+        <div class="row">
+            <div class="col-md-6" align="right"><button type="submit" class="btn btn-primary" >REGISTRAR</button></div>
+            <div class="col-md-6" align="left"><button type="button" class="btn btn-danger" ng-click="Redirigir('Clientes')">CANCELAR</button></div>
+        </div>
+        </form>
+        <!-- FORMULARIO -->

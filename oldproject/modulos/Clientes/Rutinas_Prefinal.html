@@ -1,0 +1,130 @@
+<style type="text/css">
+	.ListaInstructores {margin-left: 4%; margin-top: 0%; visibility:hidden}
+	.Arriba{margin-top: 1%;}
+	.Izquierda{margin-left: 3%;}
+	.Size {font-size: 13px;}
+</style>
+
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Rutinas
+            <small>Finalizar Rutina</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li class="">Rutinas</li>
+        </ol>
+    </section>
+    <!--Modal de enviando -->
+
+<div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1>Enviando...</h1>
+            </div>
+        <div class="modal-body">
+            <div class="progress progress-striped active">
+            <div class="progress-bar progress-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            
+            </div>
+            </div>
+        </div><!-- modal body-->
+        <div class="modal-footer">
+        </div>
+        </div>
+    </div>
+</div><!-- pleaseWaitDialog-->
+    
+    <!-- Main content -->
+    <section class="content">
+    	<!-- HEADER DEL CONTENIDO-->
+        <h4 class="page-header">
+            Listado de Clientes
+            <small>
+            	En este apartado encontrará toda la informaci&oacute;n de la rutina registrada para  los Clientes de <span class="text-red">spin gym</span>,
+                podrá dar de alta los n&uacute;meros de repeticiones y de circuitos para cada ejercicio de toda la rutina.
+            </small>
+        </h4>
+        <!-- HEADER DEL CONTENIDO-->
+        <div class="alert alert-success alert-dismissible" role="alert" style="display:none;" id="UsuarioEliminadoNotificacion">
+<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<strong>Bien Hecho!</strong> Cliente Eliminado.</div>
+		<div class="row">
+        	<div class="col-xs-12">
+				<div class="box">
+                    <div class="box-header">
+                        <div class="col-sm-12">
+                        	<h4>Para relizar alg&uacute;n cambio de click sobre los campos vac&iacute;os (o con n&uacute;meros si ya contiene) de <strong>Repeticiones</strong>
+                            	y <strong>Circuitos</strong>, anote los números y presionte <strong>Enter</strong>.
+                            </h4>
+                        </div>
+                    </div><!-- /.box-header -->
+                      <div class="box-body table-responsive" id="TablaDatos" col-md-12>								
+                        <table id="listados" class="table table-bordered table-striped Size col-md-12">
+                            <thead>
+                                <tr>
+                                	<th class="text-center">CODIGO </th>
+                                    <th class="text-center">RUTINA</th>
+                                    <th class="text-center">EJERCICIO</th>
+                                    <th class="text-center">REPETICIONES</th>
+                                    <th class="text-center">SERIES</th>
+                                    <th class="text-center">DIA</th>
+                                    <th class="text-center">TIPO RUTINA</th>
+                                    <th class="text-center">MUSCULO</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablecontent">
+                         
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                     <th> CODIGO </th>
+                                     <th>RUTINA</th>
+                                    <th>EJERCICIO</th>
+                                    <th>REPETICIONES</th>
+                                    <th>SERIES</th>
+                                    <th>DIA</th>
+                                    <th>TIPO RUTINA</th>
+                                    <th>MUSCULO</th>
+                                   <!-- <th>USUARIO</th>-->
+                                </tr>
+                            </tfoot>
+                        </table>
+                         <div class="col-md-12 Loading" ng-show="send!=false">
+                            <h1 class="text-center">Enviando</h1>
+                            <div class="sk-spinner sk-spinner-wandering-cubes">
+                              <div class="sk-cube1"></div>
+                              <div class="sk-cube2"></div>
+                            </div>
+                        </div><!-- loading-->
+                        
+                        <div class="alert alert-success col-md-11 alerta" ng-show="fallo==0">
+                              <strong>Perfecto!</strong> Los resultados se han enviado
+                            </div>
+
+                            <div class="alert alert-danger col-md-11 alerta" ng-show="fallo==1">
+                              <strong>Alerta!</strong> Los resultados No se han enviado. <br>
+                              Error: {{errormsj}}
+                            </div>
+                        </div><!-- /.box-header -->
+
+
+                        <div class="row" ng-hide="send==true">
+                        	<div class="col-sm-12"><h3 class="box-title">Acciones</h3></div>
+                        	<div class="col-sm-1 Arriba"><button class="btn btn-success btn-sm" ng-click="FinalizarRutina()"><i class="fa fa-plus"></i> Finalizar Rutina</button></div>
+                        	<div class="col-sm-1 Arriba Izquierda"><button class="btn btn-info btn-sm" ng-click="EnviarRutina()"><i class="fa fa-plus"></i> Enviar Rutina</button></div>
+                        </div>
+                        
+                       
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>
+
+</div>

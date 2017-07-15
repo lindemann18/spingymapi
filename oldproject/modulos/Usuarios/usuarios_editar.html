@@ -1,0 +1,192 @@
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side" ng-controller="UsersEdit">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Usuarios
+                        <small>Editar Usuarios</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="active">Usuarios</li>
+                    </ol>
+                </section>
+                
+                <div class="col-md-12 Loading" ng-hide="mostrarbuscando!=true">
+                    <h1 class="text-center">Cargando</h1>
+                    <div class="sk-spinner sk-spinner-wandering-cubes">
+                      <div class="sk-cube1"></div>
+                      <div class="sk-cube2"></div>
+                    </div>
+                </div><!-- loading-->
+                <!-- Main content -->
+                <section class="content" ng-show="mostrarform!=false">
+                	<!-- HEADER DEL CONTENIDO-->
+                   <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Atención!</strong> <p id="ErrorTexto"></p>
+                    </div>
+                    <h4 class="page-header">
+                        Formulario de Usuario 
+                        <small>
+                        	En este apartado podrá Editar los usuarios de <span class="text-red">spin gym</span>, ya sean administradores o entrenadores.
+                        </small>
+                    </h4>
+                    <!-- HEADER DEL CONTENIDO-->
+					<div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Atención!</strong> <p id="ErrorTexto"></p>
+                    </div>
+                    <!-- FORMULARIO -->
+                    <form name="clientesRegistrar" id="clientesRegistrar" role="form" ng-submit="EditarUsuario()">
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    <div class="row">
+                    	<!-- COLUMNA IZQUIERDA -->
+                    	<div class="col-md-6">
+                        	<!-- CAJA -->
+							<div class="box box-primary">
+                                <!-- HEADER DE LA CAJA -->
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos Generales</h3>
+                                </div>
+                                <!-- HEADER DE LA CAJA -->
+                                    
+                                <!-- CUERPO DE LA CAJA -->
+                                <div class="box-body">
+                                	<div class="form-group">
+                                        <label for="nb_cliente">Nombre Usuario</label>
+                                        <input type="text" name="nb_usuario" id="nb_usuario" campo="Nombre de usuario"
+                                         class="form-control requerido" placeholder="Nombre de Usuario" ng-model="usuario.nb_usuario" required>
+                                         
+                                    </div>
+                                	
+                                	 <div class="form-group">
+                                        <label for="nb_cliente">Password</label>
+                                        <input type="text" name="pw_password" id="pw_password" campo="password de Usuario" 
+                                        class="form-control requerido" placeholder="Password de Usuario" ng-model="usuario.pw_password" required>
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label for="nb_cliente">Nombres </label>
+                                        <input type="text" name="nb_nombre" id="nb_nombre" campo="Nombres" class="form-control requerido" 
+                                        placeholder="Nombres" ng-model="usuario.nb_nombre" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Apellidos</label>
+                                        <input type="text" name="nb_apellidos" id="nb_apellidos" campo="Apellido de Usuario" class="form-control requerido" 
+                                        placeholder="Apellidos" ng-model="usuario.nb_apellidos">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Genero del Usuario</label>
+                                        <select class="form-control" id="de_genero" ng-model="usuario.de_genero">
+                                            <option value="">Seleccionar...</option>
+                                            <option value="MASCULINO" ng-seleced="MASCULINO">MASCULINO</option>
+                                            <option value="FEMENINO" ng-selected="FEMENINO">FEMENINO</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="num_edad">Edad del Usuario</label>
+                                        <input type="text" name="num_edad" id="num_edad" campo="Edad de Cliente" class="form-control requerido" 
+                                        placeholder="Edad del Usuario" ng-model="usuario.num_edad">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="de_email">Email Usuario</label>
+                                        <input type="email" name="de_email" id="de_email" campo="Email de Cliente" class="form-control requerido" 
+                                        placeholder="Email del Usuario" ng-model="usuario.de_email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefono Usuario:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <input type="text" name="num_telefono" id="num_telefono" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask
+                                            ng-model="usuario.num_telefono">
+                                        </div><!-- /.input group -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Celular Usuario:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <input type="text" name="num_celular" id="num_celular" campo="Celular de Cliente" class="form-control requerido" 
+                                            data-inputmask='"mask": "(999) 999-9999"' data-mask ng-model="usuario.num_celular">
+                                        </div><!-- /.input group -->
+                                    </div>
+                                </div>
+                                <!-- CUERPO DE LA CAJA -->
+
+                                <!-- FOOTER DE LA CAJA -->
+                                <div class="box-footer">
+                                     Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                                </div>
+                                <!-- FOOTER DE LA CAJA -->
+                            </div>
+                            <!-- CAJA -->
+                        </div>
+                        <!-- COLUMNA IZQUIERDA -->
+                        
+                        <!-- COLUMNA DERECHA -->
+                    	<div class="col-md-6">
+							<!-- CAJA -->
+                            <div class="box box-warning">
+                                <!-- HEADER DE LA CAJA -->
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos de Ubicaci&oacute;n</h3>
+                                </div>
+                                <!-- HEADER DE LA CAJA -->
+                                
+                                <!-- CUERPO DE LA CAJA -->
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label>Permisos</label>
+                                        <select class="form-control requerido" campo="Estado" name="Permisos" id="Permisos" ng-model="usuario.Permisos">
+                                            <option value="">SELECCIONAR</option>
+                                            <option value="0" ng-selected="0">Entrenador</option>
+                                            <option value="1" ng-selected="1">Administrador</option>
+                                        </select>
+                                    </div>
+                                   
+                                    <div class="form-group">
+                                        <label>Colonia</label>
+                                        <input type="text" name="de_colonia" id="de_colonia" class="form-control" placeholder="Colonia del Usuario" ng-model="usuario.de_colonia">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Direcci&oacute;n</label>
+                                        <textarea name="de_domicilio" id="de_domicilio" campo="Dirección de Cliente" class="form-control requerido" rows="3" 
+                                        placeholder="Dirección del Usuario" ng-model="usuario.de_domicilio"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>C&oacute;dico Postal</label>
+                                        <input type="text" name="num_codigoPostal" id="num_codigoPostal" class="form-control"
+                                         placeholder="Código Postal del Usuario" ng-model="usuario.num_codigoPostal">
+                                    </div>
+                                </div>
+                                <!-- CUERPO DE LA CAJA -->
+                                
+								<!-- FOOTER DE LA CAJA -->
+                                <div class="box-footer">
+                                    Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                                </div>
+                                <!-- FOOTER DE LA CAJA -->
+                            </div>
+                            <!-- CAJA -->
+                        </div>
+                        <!-- COLUMNA DERECHA -->
+                    </div>
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    
+                    <div class="row">
+                    	<div class="col-md-6" align="right"><button type="submit" class="btn btn-primary" >EDITAR USUARIO</button></div>
+                        <div class="col-md-6" align="left"><button type="reset" class="btn btn-danger" ng-click="Redirigir('Usuarios')">CANCELAR</button></div>
+                    </div>
+                    </form>
+                    <!-- FORMULARIO -->
+                </section>
+            </aside>
+
+</div>
+

@@ -1,0 +1,116 @@
+<style type="text/css">
+	.ListaInstructores {margin-left: 4%; margin-top: 0%; visibility:hidden}
+	.Filtros{margin-bottom: 1.5%;}
+	.pleft {padding-left: 0%;}
+</style>
+
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Clientes
+                        <small>Registrar Clientes</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="">Clientes</li>
+                    </ol>
+                </section>
+                
+                
+                <!-- Main content -->
+                <section class="content">
+                	<!-- HEADER DEL CONTENIDO-->
+                    <h4 class="page-header">
+                        Listado de Clientes
+                        <small>
+                        	En este apartado encontrará a todos los Clientes registrados en <span class="text-red">spin gym</span>, a demás podrá dar de alta,
+                            editar o incluso dar de baja a los Clientes que necesite.
+                        </small>
+                    </h4>
+                    <!-- HEADER DEL CONTENIDO-->
+                     <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+					      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					      <strong>Atención!</strong> <p id="ErrorTexto"></p>
+					 </div>
+					<div class="row">
+                    	<div class="col-xs-12">
+							<div class="box">
+                                <div class="box-header">
+                                    <div class="col-sm-12">
+                                    	<h4>Para realizar alguna acción con un registro, por favor de clic sobre la información correspondiente
+                                        del cliente para seleccionarlo, y a continuación, de clic en alguno de los botones EDITAR o ELIMINAR.</h4>
+                                    </div>
+                                </div><!-- /.box-header -->
+
+                                <div class="col-md-12 Loading" ng-show="mostrarbuscando==true">
+									<h1 class="text-center">Cargando</h1>
+									<div class="sk-spinner sk-spinner-wandering-cubes">
+								      <div class="sk-cube1"></div>
+								      <div class="sk-cube2"></div>
+								    </div>
+								</div><!-- loading-->
+                                <div class="box-body table-responsive" id="TablaDatos" ng-show="mostrarbuscando==false">
+                                									
+                                    <table id="listados" class="table table-bordered table-striped">
+                                    <!-- Filtros -->
+						<div class="col-md-12 Filtros pleft">
+							<div class="row">
+								<div class="col-xs-4">
+				              <label for="search">Búsqueda:</label>
+				              <input ng-model="q" id="search" class="form-control" placeholder="Filtrado">
+				            </div>
+				            <div class="col-xs-2">
+				              <label for="search">Clientes Por Página:</label>
+				              <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+				            </div>
+							</div><!-- row -->
+						</div><!-- filtros -->
+                                        <thead>
+                                            <tr>
+                                            	<th class="text-center">CODIGO</th>
+                                                <th class="text-center">NOMBRE</th>
+                                                <th class="text-center">APELLIDOS</th>
+                                                <th class="text-center">EMAIL</th>
+                                                <th class="text-center">CELULAR</th>
+                                                <th class="text-center">FORMULARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                       	<tr dir-paginate="clie in clientes | filter:q | itemsPerPage: pageSize" current-page="currentPage"  class="text-center" id="{{'table'+cli.id}}" ng-click="Selecciontr(this)" class="text-center">
+                                       		<td>{{clie.id}}</td>
+                                       		<td>{{clie.nb_cliente}}</td>
+                                       		<td>{{clie.nb_apellidos}}</td>
+                                       		<td>{{clie.de_email}}</td>
+                                       		<td>{{clie.num_celular}}</td>
+                                       		<td><button class="btn btn-info col-md-12" ng-click="imprimirform(clie.id)">Imprimir</button></td>
+                                       	</tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                            	<th>CODIGO</th>
+                                                <th>NOMBRE</th>
+                                                <th>APELLIDOS</th>
+                                                <th>EMAIL</th>
+                                                <th>CELULAR</th>
+                                                <th>FORMULARIO</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <div class="row">
+                                    	<div class="text-center col-md-12">
+                                  <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+                                  </div>
+                                       
+                                    </div>
+                                    
+                                </div><!---TablaDatos --->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+</div>

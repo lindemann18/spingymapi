@@ -1,0 +1,76 @@
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            BioTest
+            <small>Evaluación F&iacute;sica</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li class="">BioTest Ultra</li>
+             <li class="fa fa-dashboard">Flexibilidad</li>
+        </ol>
+    </section>
+    
+    
+    <!-- Main content -->
+    <section class="content">
+        <!-- HEADER DEL CONTENIDO-->
+        <h4 class="page-header">
+             Apartado de Flexibilidad
+              <small>
+                En este apartado podr&aacute; hacer el test de Flexibilidad  a todos los Clientes registrados 
+                en <span class="text-red">spin gym</span>,además podrá ver resultados y consejos para aumentar su Flexibilidad.
+            </small>
+        </h4>
+        <!-- HEADER DEL CONTENIDO-->
+        <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Atención!</strong> <p id="ErrorTexto"></p>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                
+                <!-- APARTADO DEL FORMULARIO DONDE NO SE HA HECHO LA EVALUACIÓN FÍSICA-->
+                    <div class="box-header">
+                        <div class="col-sm-12">
+                            <div class="col-md-12 Contenido">
+
+                            </div><!-- Contenido -->
+                                <h4 class="text-center">Para comenzar el examen de Flexibilidad, Se medira su FLEXIBILIDAD, a través de 
+                                        un examen en donde la persona de sienta en el suelo con sus rodillas pegadas al piso y su espalda recta 
+                                        y los brazos estirados y la punta de sus dedos es el punto de inicio para medir cuanta flexibilidad tiene.</h4>
+                                        
+                                <div class="col-sm-12" id="ContentCondicion">
+                                    <h2 id="titleCondicion">Flexibilidad</h2>
+                                    <img src="css/img/flex.jpg" alt="">
+                                </div><!--ContentCondicion -->
+                            
+                            <div class="formulario col-xs-12">
+                                <form ng-submit="EvaluarFlexibilidad()">
+                                    <div class="pregunta col-xs-6">
+                                    <label for="">Resultado: </label>
+                                    <div class="col-xs-5">
+                                   
+                                    <input type="text" ng-model="flexib.repeticiones"
+                                     placeholder="Ingrese Resultado" class="form-control" required only-digits>
+                                    </div>
+                                    <button type="submit" class="btn btn-success" >Evaluar</button>
+                                    </div><!--pregunta -->
+                              
+                                </form>
+                                </div><!--formulario -->
+                        </div><!--col-sm-12 -->
+                    </div><!-- /.box-header -->
+                    
+                    
+                    <div class="box-body">
+                    
+                    </div><!-- box-body-->
+                </div><!--box -->
+            </div><!--col-xs-12 -->
+        </div><!--row -->
+    </section>
+</aside>

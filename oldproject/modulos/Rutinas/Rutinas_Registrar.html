@@ -1,0 +1,195 @@
+<style>
+.Cuestionario{margin-right: 20%;}
+.Botones {margin-right: 4%;}
+</style>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Rutinas
+                        <small>Registrar Rutinas</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="">Rutinas</li>
+                        <li class="active">Registrar Rutinas</li>
+                    </ol>
+                </section>
+                
+                
+                <!-- Main content -->
+                <section class="content">
+                	<!-- HEADER DEL CONTENIDO-->
+                 <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Atención!</strong> <p id="ErrorTexto"></p>
+                  </div>	
+  
+                    <h4 class="page-header">
+                        Formulario De Rutinas
+                        <small>
+                        	En este apartado podrá registrar las Rutinas para los clientes de <span class="text-red">spin gym</span>. Anote el nombre de la rutina, descripci&oacute;n
+                            seleccione el tipo de rutina para cada día de la semana de la persona.
+                        </small>
+                    </h4>
+                    <!-- HEADER DEL CONTENIDO-->
+
+                    <!-- FORMULARIO -->
+                    <form ng-submit="veriricarRutina()">
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    <div class="row">
+                    	<!-- COLUMNA IZQUIERDA -->
+                    	<div class="col-md-8 pull-right Cuestionario">
+                        	<!-- CAJA -->
+							<div class="box box-primary">
+                                <!-- HEADER DE LA CAJA -->
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos Rutinas</h3>
+                                </div>
+                                <!-- HEADER DE LA CAJA -->
+                                    
+                                <!-- CUERPO DE LA CAJA -->
+                                <div class="box-body">
+                                	
+                                    <!-- input con el id de quien lo registró-->
+                                	
+                                    <div class="form-group">
+                                        <label for="nb_cliente">Nombre*</label>
+                                        <input type="text"campo="Nombres" class="form-control " placeholder="Nombre de Rutina" ng-model="rutina.nb_rutina" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Descripci&oacute;n*</label>
+                                        <textarea class="form-control" ng-model="rutina.desc_rutina" required></textarea>
+                                    </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <label >Categor&iacute;a*</label>
+                                       <select ng-model="rutina.categoria"
+                                   ng-options="cat.id as cat.nb_categoriarutina for cat in cat_rut" class="form-control" required>
+                                       	<option value="">Seleccionar...</option>
+                                  
+                                       </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Género*</label>
+                                       <select ng-model="rutina.genero"
+                                   ng-options="gen.id as gen.nb_tiporutina for gen in generos" class="form-control" required>
+                                       	<option value="">Seleccionar...</option>
+                                 
+                                       </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Edad*</label>
+                                       <select ng-model="rutina.edad"
+                                   ng-options="ed.id as ed.nb_edad for ed in Edades" class="form-control" required>
+                                        <option value="">Seleccionar...</option>
+                                 
+                                       </select>
+                                    </div>
+
+                                     <div class="form-group">
+                                        <label for="nb_apellidos">Tipo Cuerpo*</label>
+                                        <select ng-model="rutina.cuerpo"
+                                          ng-options="cur.id as cur.nb_cuerpo for cur in cuerpos" class="form-control" required>
+                                        <option value="">Seleccionar...</option>
+                                        
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- días de la rutina-->
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Lunes*</label>
+                                       <select ng-model="rutina.lunes"
+                                   ng-options="tip1.id as tip1.nb_tiporutina for tip1 in tiposRut" class="form-control" required id="lunes">
+                                       	<option value="">Seleccionar...</option>
+                                      
+									
+                                       </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Martes*</label>
+                                       <select ng-model="rutina.martes"
+                                   ng-options="tip.id as tip.nb_tiporutina for tip in tiposRut" class="form-control" required id="martes">
+                                       	<option value="">Seleccionar...</option>
+                                     
+										
+                                       </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Mi&eacute;rcoles*</label>
+                                       <select ng-model="rutina.miercoles"
+                                   ng-options="tip.id as tip.nb_tiporutina for tip in tiposRut" class="form-control" required id="miercoles">
+                                       	<option value="">Seleccionar...</option>
+                                    
+										
+                                       </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Jueves*</label>
+                                       <select ng-model="rutina.jueves"
+                                   ng-options="tip.id as tip.nb_tiporutina for tip in tiposRut" class="form-control" required id="jueves">
+                                       	<option value="">Seleccionar...</option>
+                               
+                                       </select>
+                                    </div>
+                                   
+                                   <div class="form-group">
+                                        <label for="nb_apellidos">viernes*</label>
+                                       <select ng-model="rutina.viernes"
+                                   ng-options="tip.id as tip.nb_tiporutina for tip in tiposRut" class="form-control" required id="viernes">
+                                        <option value="">Seleccionar...</option>
+                               
+                                       </select>
+                                    </div>         
+
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">S&aacute;bado*</label>
+                                       <select ng-model="rutina.sabado"
+                                   ng-options="tip.id as tip.nb_tiporutina for tip in tiposRut" class="form-control" required id="sabado">
+                                       	<option value="">Seleccionar...</option>
+                                     
+                                       </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Domingo*</label>
+                                       <select ng-model="rutina.domingo"
+                                   ng-options="tip.id as tip.nb_tiporutina for tip in tiposRut" class="form-control" required id="domingo">
+                                       	<option value="">Seleccionar...</option>
+                                        
+                                       </select>
+                                    </div>
+                                    
+                                    
+                                </div><!-- box-body -->
+                                <!-- CUERPO DE LA CAJA -->
+
+                                <!-- FOOTER DE LA CAJA -->
+                                <div class="box-footer">
+                                     Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                                </div>
+                                <!-- FOOTER DE LA CAJA -->
+                            </div>
+                            <!-- CAJA -->
+                        </div>
+                        <!-- COLUMNA IZQUIERDA -->
+                        
+                       
+                    </div>
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    
+                    <div class="row Botones">
+                    	<div class="col-md-6" align="right"><button type="submit" class="btn btn-primary" o>REGISTRAR</button></div>
+                        <div class="col-md-6" align="left"><button type="reset" class="btn btn-danger" ng-click="Redirigir('Rutinas')">CANCELAR</button></div>
+                    </div>
+                    </form>
+                    <!-- FORMULARIO -->
+                </section>
+            </aside>
+
+</div>
+

@@ -1,0 +1,99 @@
+<style>
+.Cuestionario{margin-right: 20%;}
+.Botones {margin-right: 4%;}
+</style>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Utilidades
+                        <small>Registrar Categor&iacute;as</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="active">Utilidades</li>
+                    </ol>
+                </section>
+                
+                
+                <!-- Main content -->
+                <section class="content">
+                	<!-- HEADER DEL CONTENIDO-->
+                   <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Atención!</strong> <p id="ErrorTexto"></p>
+                  </div>
+                    <h4 class="page-header">
+                        Formulario de Categor&iacute;as
+                        <small>
+                        	En este apartado podrá registrar las Categor&iacute;asde las M&aacute;quinas de <span class="text-red">spin gym</span>.
+                        </small>
+                    </h4>
+                    <!-- HEADER DEL CONTENIDO-->
+					<div class="col-md-12 Loading" ng-hide="mostrarbuscando!=true">
+							<h1 class="text-center">Cargando</h1>
+							<div class="sk-spinner sk-spinner-wandering-cubes">
+						      <div class="sk-cube1"></div>
+						      <div class="sk-cube2"></div>
+						    </div>
+					</div><!-- loading-->
+                    <!-- FORMULARIO -->
+                    <form ng-show="mostrarform!=false" ng-submit="EditarCat()">
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    <div class="row">
+                    	<!-- COLUMNA IZQUIERDA -->
+                    	<div class="col-md-8 pull-right Cuestionario" >
+                        	<!-- CAJA -->
+							<div class="box box-primary">
+                                <!-- HEADER DE LA CAJA -->
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos Categor&iacute;as</h3>
+                                </div>
+                                <!-- HEADER DE LA CAJA -->
+                                    
+                                <!-- CUERPO DE LA CAJA -->
+                                <div class="box-body">
+                                	
+                                    <div class="form-group">
+                                        <label for="nb_cliente">Nombre </label>
+                                        <input type="text" ng-model="cat.nb_categoriamaquina"
+                                        placeholder="Nombre de Categor&iacute;as" class="form-control" required>
+                                        
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Descripci&oacute;n</label>
+                                        <textarea class="form-control" ng-model="cat.desc_categoriamaquina" required></textarea>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                <!-- CUERPO DE LA CAJA -->
+
+                                <!-- FOOTER DE LA CAJA -->
+                                <div class="box-footer">
+                                     Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                                </div>
+                                <!-- FOOTER DE LA CAJA -->
+                            </div>
+                            <!-- CAJA -->
+                        </div>
+                        <!-- COLUMNA IZQUIERDA -->
+                        
+                       
+                    </div>
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    
+                    <div class="row Botones">
+                    	<div class="col-md-6" align="right">
+                    	<button type="submit" class="btn btn-primary" >EDITAR</button>
+                    	</div>
+                        <div class="col-md-6" align="left"><button type="reset" class="btn btn-danger" ng-click="Redirigir('CategoriaMaquinas')">CANCELAR</button></div>
+                    </div>
+                    </form>
+                    <!-- FORMULARIO -->
+                </section>
+            </aside>
+
+</div>

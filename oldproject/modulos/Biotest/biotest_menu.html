@@ -1,0 +1,95 @@
+<style type="text/css">
+	.LabelPregunta {width: 100%;}
+	.hide {display: none;}
+    .alerta{    margin-top: 3%;}
+</style>
+
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Clientes
+            <small>Biotest Para Clientes</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li class="active">Biotest</li>
+        </ol>
+    </section>
+    
+    
+    <!-- Main content -->
+    <section class="content">
+    	<!-- HEADER DEL CONTENIDO-->
+        <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Atención!</strong> <p id="ErrorTexto"></p>
+        </div>
+        <h4 class="page-header">
+            Biotest Light
+            <small>
+            	En este apartado podrá seleccionar entre las opciones de biotest disponibles para los clientes de <span class="text-red">spin gym</span>.
+            </small>
+        </h4>
+        <!-- HEADER DEL CONTENIDO-->
+        
+        <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+        <div class="row">
+        	<!-- COLUMNA IZQUIERDA -->
+        	<div class="col-md-12">
+            	<!-- CAJA -->
+				<div class="box box-primary">
+                    <!-- HEADER DE LA CAJA -->
+                    <div class="box-header">
+                     
+                        <h2 class="text-center">Opciones</h2>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <h3 class="text-center">Aplicar Biotest</h3>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6"><button class="btn btn-primary col-md-12" ng-click="Aplicar()">Aplicar</button></div>
+                            </div>
+                            <div class="col-md-6">
+                                 <h3 class="text-center">Enviar Resultados</h3>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6"><button class="btn btn-info col-md-12" ng-click="enviar()">Enviar</button></div>
+                            </div>
+                            
+                            <div class="col-md-12 Loading" ng-hide="showsend!=true">
+                                <h1 class="text-center">Enviando</h1>
+                                <div class="sk-spinner sk-spinner-wandering-cubes">
+                                  <div class="sk-cube1"></div>
+                                  <div class="sk-cube2"></div>
+                                </div>
+                            </div><!-- loading-->
+                        
+
+                        <div class="alert alert-success col-md-11 alerta" ng-show="fallo==0">
+                          <strong>Perfecto!</strong> Los resultados se han enviado
+                        </div>
+
+                        <div class="alert alert-danger col-md-11 alerta" ng-show="fallo==1">
+                          <strong>Alerta!</strong> Los resultados No se han enviado. <br>
+                          Error: {{errormsj}}
+                        </div>
+
+                        </div>
+
+                       
+                    </div><!-- box-header -->
+                    
+            </div>
+            <!-- COLUMNA IZQUIERDA -->
+            
+            
+        <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+        
+        
+        </form>
+        <!-- FORMULARIO -->
+    </section>
+</aside>
+
+</div>

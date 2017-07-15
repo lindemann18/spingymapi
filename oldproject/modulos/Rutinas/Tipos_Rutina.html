@@ -1,0 +1,119 @@
+<style type="text/css">
+	.ListaInstructores {margin-left: 4%; margin-top: 0%; visibility:hidden}
+    .Filtros{margin-bottom: 1.5%;}
+    .pleft {padding-left: 0%;}
+</style>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Rutinas
+                        <small>Tipos De Rutina</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="">Rutinas</li>
+                        <li class="active">Tipos Rutina</li>
+                    </ol>
+                </section>
+                
+                
+                <!-- Main content -->
+                <section class="content">
+                	<!-- HEADER DEL CONTENIDO-->
+                    <h4 class="page-header">
+                        Listado de Tipos De Rutina
+                        <small>
+                        	En este apartado encontrará a todos los Tipos De Rutina registrados en <span class="text-red">spin gym</span>, a demás podrá dar de alta,
+                            editar o incluso dar de baja a las m&aacute;quinasque necesite.
+                        </small>
+                    </h4>
+                    <!-- HEADER DEL CONTENIDO-->
+                    <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Atención!</strong> <p id="ErrorTexto"></p>
+                    </div>
+					<div class="row">
+                    	<div class="col-xs-12">
+							<div class="box">
+                                <div class="box-header">
+                                    <div class="col-sm-12">
+                                    	<h4>Para realizar alguna acción con un registro, por favor de clic sobre la información correspondiente
+                                        del cliente para seleccionarlo, y a continuación, de clic en alguno de los botones EDITAR o ELIMINAR.</h4>
+                                    </div>
+                                </div><!-- /.box-header -->
+                                <div class="col-md-12 Loading" ng-hide="mostrarbuscando!=true">
+                                    <h1 class="text-center">Cargando</h1>
+                                    <div class="sk-spinner sk-spinner-wandering-cubes">
+                                      <div class="sk-cube1"></div>
+                                      <div class="sk-cube2"></div>
+                                    </div>
+                                </div><!-- loading-->
+                                <div class="box-body table-responsive" id="TablaDatos" ng-show="mostrarmaquinas!=false">
+                                								
+                                    <table id="listados" class="table table-bordered table-striped">
+                                       <!-- Filtros -->
+                            <div class="col-md-12 Filtros pleft">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                  <label for="search">Búsqueda:</label>
+                                  <input ng-model="q" id="search" class="form-control" placeholder="Filtrado">
+                                </div>
+                                <div class="col-xs-2">
+                                  <label for="search">Maquinas Por Página:</label>
+                                  <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+                                </div>
+                                </div><!-- row -->
+                            </div><!-- filtros -->
+                                        <thead>
+                                            <tr>
+                                        	<th class="text-center">CODIGO</th>
+                                            <th class="text-center">NOMBRE</th>
+                                            <th class="text-center">DESCRIPCION</th>
+                                            <th class="text-center">USUARIO ALTA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-center"  dir-paginate="tipr in TiposRutina | filter:q | itemsPerPage: pageSize" current-page="currentPage" id="{{'table'+tipr.id}}" ng-click="Selecciontr(this)">
+                                                <td>{{tipr.id}}</td>
+                                                <td>{{tipr.nb_tiporutina}}</td>
+                                                <td>{{tipr.desc_tiporutina | limitTo: 50}}</td>
+                                                <td>{{tipr.nb_nombre+" "+tipr.nb_apellidos}}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                        	<th class="text-center">CODIGO</th>
+                                            <th class="text-center">MUSCULO</th>
+                                            <th class="text-center">DESCRIPCION</th>
+                                            <th class="text-center">USUARIO ALTA</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <div class="row">
+                                    	
+                                       
+                                        <div class="col-sm-12">
+                                            <h3 class="box-title">Acciones</h3>
+                                        </div>
+                                         <div class="col-sm-1"><button class="btn btn-success btn-sm" id="agregar" ng-click="Agregar()"><i class="fa fa-plus"></i> AGREGAR</button></div>
+                                        <div class="col-sm-1"><button class="btn btn-warning btn-sm"  ng-click="Editar()"><i class="fa fa-edit"></i> EDITAR</button></div>
+                                        <div class="col-sm-1"><button class="btn btn-danger btn-sm"   ng-click="Eliminar()"><i class="fa fa-times"></i> ELIMINAR</button></div>
+                                        
+                                    </div><!-- row -->
+                                    <div class="text-center col-md-12">
+                                      <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+                                      </div>
+                                </div><!---TablaDatos --->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+</div>
+
+
+   

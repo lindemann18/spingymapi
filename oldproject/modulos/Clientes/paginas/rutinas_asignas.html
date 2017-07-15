@@ -1,0 +1,114 @@
+<style type="text/css">
+.Filtros{margin-bottom: 1.5%;}
+    .pleft {padding-left: 0%;}
+    .ContenedorFiltros{    margin-top: 1%; padding-left: 0px;}
+</style>
+<div class="box-body table-responsive Tabla" id="TablaDatos" ng-show="mostrarcontent!=false">
+
+<table id="listados" class="table table-bordered table-striped" >
+    <thead>
+        <tr>
+            <th class="text-center">RUTINA</th>
+            <th class="text-center">DESCRIPCION</th>
+            <th class="text-center">CATEGORIA</th>
+            <th class="text-center">GENERO</th>
+            <th class="text-center">CUERPO</th>
+            <th class="text-center">EDAD</th>
+            <th class="text-center">ENTRENADOR</th>
+            <th class="text-center">ASIGNAR</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Filtros -->
+        <div class="col-md-12 Filtros pleft">
+            <div class="row">
+                <div class="col-xs-4">
+              <label for="search">Búsqueda:</label>
+              <input ng-model="q" id="search" class="form-control" placeholder="Filtrado">
+            </div>
+            <div class="col-xs-2">
+              <label for="search">Ejercicios Por Página:</label>
+              <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+            </div>
+            </div><!-- row -->
+        </div><!-- filtros -->
+        <tr dir-paginate="rut in rutinas | filter:q | itemsPerPage: pageSize" current-page="currentPage"  class="text-center" id="{{'table'+rut.id_rutina}}" ng-click="Selecciontr(this)" class="text-center">
+                <td>{{rut.nb_rutina}}</td>
+                <td>{{rut.desc_rutina | limitTo: 50}}</td>
+                <td>{{rut.nb_categoriarutina}}</td>
+                <td>{{rut.nb_tiporutina}}</td>
+                <td>{{rut.nb_cuerpo}}</td>
+                <td>{{rut.nb_edad}}</td>
+                <td>{{rut.nb_nombre+" "+rut.nb_apellidos}}</td>
+                <td><button class="btn btn-info" ng-click="AsignarRutina(rut.id_rutina)">Asignar</button></td>
+            </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+         	<th class="text-center">RUTINA</th>
+            <th class="text-center">DESCRIPCION</th>
+            <th class="text-center">CATEGORIA</th>
+            <th class="text-center">GENERO</th>
+            <th class="text-center">CUERPO</th>
+            <th class="text-center">EDAD</th>
+            <th class="text-center">ENTRENADOR</th>
+            <th class="text-center">ASIGNAR</th>
+        </tr>
+    </tfoot>
+</table>
+<div class="row">
+        <div class="col-sm-12">
+            <h3 class="box-title">Acciones</h3>
+       </div>
+       <div class="col-md-12">
+        <form ng-submit="FiltrarRutinas()">
+           
+        <div class="col-md-1 "><button class="btn btn-info btn-sm " type="button" ng-click="showfilter=true"><i class="fa fa-male"></i> Filtros</button></div>
+      
+        <div class="col-md-12 ContenedorFiltros">
+                            <div class="Filtros" ng-show="showfilter!=false">
+                            <div class="col-sm-1"><button type="submit" class="btn btn-primary btn-sm" ng-disabled="disablebtn!=false"><i class="fa fa-search"></i> FILTRAR</button></div>
+                                <div class="col-sm-2 ListaInstructores" id="">
+                                    <select ng-model="rutina.entrenador"
+                                     ng-options="ent.id as ent.nombre for ent in entrenadores" class="form-control" required ng-change="CategoriasporEnt()">
+                                        <option value="">Seleccionar...</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-2 ListaInstructores" id="">
+                                    <select ng-model="rutina.tipo_rutina"
+                                     ng-options="tipru.id as tipru.nb_categoriarutina for tipru in tipos_rut" class="form-control" required>
+                                        <option value="">Seleccionar...</option>
+                                    </select>
+                                </div>
+                                
+                                 <div class="col-sm-2 ListaInstructores" id="">
+                                    <select ng-model="rutina.genero"
+                                     ng-options="gen.id as gen.nb_tiporutina for gen in generos" class="form-control" required>
+                                        <option value="">Seleccionar...</option>
+                                        
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-2 ListaInstructores" id="">
+                                    <select ng-model="rutina.edad"
+                                     ng-options="ed.id as ed.nb_edad for ed in Edades" class="form-control" required>
+                                        <option value="">Seleccionar...</option>
+                                        
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-2 ListaInstructores" id="">
+                                    <select ng-model="rutina.cuerpo"
+                                     ng-options="cu.id as cu.nb_cuerpo for cu in cuerpos" class="form-control" required>
+                                        <option value="">Seleccionar...</option>
+                                        
+                                    </select>
+                                </div>
+                                    </div><!-- Contenedor Filtros -->
+        </div>
+</div><!---TablaDatos --->
+<div class="text-center col-md-12">
+<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+</div>
+</div>

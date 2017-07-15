@@ -1,0 +1,231 @@
+<style>
+    .mesomorfo{background-image: url(css/img/mesomorfo.jpg); background-repeat: no-repeat; height: 200px;}
+    .endomorfo{background-image: url(css/img/endomorfo.jpg); background-repeat: no-repeat; height: 200px;}
+    .ectomorfo{background-image: url(css/img/ectomorfo.jpg); background-repeat: no-repeat; height: 200px;}
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCuerpo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">Tipo De Cuerpo</h4>
+      </div>
+      <div class="modal-body col-md-12">
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-4">
+                        <h1 class="text-center">Mesomorfo</h1>
+                        <div class="col-md-12 mesomorfo"></div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <input type="radio" id="id_cuerpo" value="MESOMORFO" name="id_cuerpo" ng-model="cliente.id_cuerpo" required>
+                        </div>
+                    </div><!-- col-md-3 -->
+
+                    <div class="col-md-4 col-lg-4 col-sm-4">
+                        <h1 class="text-center">Endomorfo</h1>
+                        <div class="col-md-12 endomorfo"></div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <input type="radio" id="id_cuerpo" value="ENDOMORFO" name="id_cuerpo" ng-model="cliente.id_cuerpo" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h1 class="text-center">Ectomorfo</h1>
+                        <div class="col-md-12 ectomorfo"></div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <input type="radio" id="id_cuerpo" value="ECTOMORFO" name="id_cuerpo" ng-model="cliente.id_cuerpo" required>
+                        </div>
+                    </div>
+
+                </div><!-- row -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Clientes
+                        <small>Registrar Clientes</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="">Clientes</li>
+                        <li class="active">Registrar Clientes</li>
+                    </ol>
+                </section>
+                
+                
+                <!-- Main content -->
+                <section class="content">
+                	<!-- HEADER DEL CONTENIDO-->
+                    <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Atención!</strong> <p id="ErrorTexto"></p>
+                    </div>
+                    <h4 class="page-header">
+                        Formulario de Clientes
+                        <small>
+                        	En este apartado podrá registrar los Clientes de <span class="text-red">spin gym</span>.
+                        </small>
+                    </h4>
+                    <!-- HEADER DEL CONTENIDO-->
+
+                    <!-- FORMULARIO -->
+                    <form ng-submit="Agregar()">
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    <div class="row">
+                    	<!-- COLUMNA IZQUIERDA -->
+                    	<div class="col-md-6">
+                        	<!-- CAJA -->
+							<div class="box box-primary">
+                                <!-- HEADER DE LA CAJA -->
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos Generales</h3>
+                                </div>
+                                <!-- HEADER DE LA CAJA -->
+                                    
+                                <!-- CUERPO DE LA CAJA -->
+                                <div class="box-body">
+                                	
+                                    <!-- input con el id de quien lo registró-->
+                                	<div class="form-group">
+                                        <label for="nb_cliente">Nombres </label>
+                                        <input class="form-control" placeholder="Nombre del cliente" required ng-model="cliente.nb_cliente">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Apellidos</label>
+                                        <input type="text" class="form-control requerido" placeholder="Apellidos del cliente" ng-model="cliente.nb_apellidos" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Genero del cliente</label>
+                                        <select class="form-control" required ng-model="cliente.de_genero">
+                                            <option value="">Seleccionar...</option>
+                                            <option value="MASCULINO">MASCULINO</option>
+                                            <option value="FEMENINO">FEMENINO</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="num_edad">Edad del cliente</label><br>
+                                         <label>D&iacute;a</label>
+                                        <select class="form-control" required ng-model="cliente.dia_nacimiento" ng-options="dia.dia as dia.dia for dia in dias">
+                                        <option value="">Seleccionar...</option>
+                                           
+                                        </select>
+                                        </div>
+                                         <div class="form-group">
+                                         <label for="">Mes </label>
+                                           <select class="form-control" 
+                                            ng-options="mes.num as mes.mes for mes in meses" required ng-model="cliente.mes">
+                                                 <option value="">Seleccionar...</option>
+                                               
+                                          </select>
+                                    	</div>
+                                        
+                                        <div class="form-group">
+                                        <label for="">A&ntilde;o</label>
+                                        	<select class="form-control" required ng-model="cliente.year" ng-options="year.num as year.num for year in years">
+                                             <option value="">Seleccionar...</option>
+                                               
+                                            </select>
+                                        </div>
+                                    <div class="form-group">
+                                        <label for="de_email">Email cliente</label>
+                                        <input type="email" class="form-control" placeholder="Email del cliente" required ng-model="cliente.de_email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefono cliente:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <input type="text" class="form-control" ng-model="cliente.num_telefono">
+                                        </div><!-- /.input group -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Celular Usuario:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <input type="text" class="form-control" ng-model="cliente.num_celular">
+                                        </div><!-- /.input group -->
+                                    </div>
+                                </div>
+                                <!-- CUERPO DE LA CAJA -->
+
+                                <!-- FOOTER DE LA CAJA -->
+                                <div class="box-footer">
+                                     Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                                </div>
+                                <!-- FOOTER DE LA CAJA -->
+                            </div>
+                            <!-- CAJA -->
+                        </div>
+                        <!-- COLUMNA IZQUIERDA -->
+                        
+                        <!-- COLUMNA DERECHA -->
+                    	<div class="col-md-6">
+							<!-- CAJA -->
+                            <div class="box box-warning">
+                                <!-- HEADER DE LA CAJA -->
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos de Ubicaci&oacute;n</h3>
+                                </div>
+                                <!-- HEADER DE LA CAJA -->
+                                
+                                <!-- CUERPO DE LA CAJA -->
+                                <div class="box-body">
+                                    
+                                    <div class="form-group">
+                                        <label>Colonia</label>
+                                        <input type="text" class="form-control" ng-model="cliente.de_colonia">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Direcci&oacute;n</label>
+                                        <textarea class="form-control requerido" ng-model="cliente.de_domicilio"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>C&oacute;dico Postal</label>
+                                        <input type="text" ng-model="cliente.num_codigopostal" class="form-control" placeholder="Código Postal del Usuario">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Tipo De Cuerpo</label>
+                                        <input type="button" class="btn btn-info" ng-click="modal()" value="Seleccionar" >
+                                    </div>
+                                </div>
+                                <!-- CUERPO DE LA CAJA -->
+                                
+								<!-- FOOTER DE LA CAJA -->
+                                <div class="box-footer">
+                                    Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                                </div>
+                                <!-- FOOTER DE LA CAJA -->
+                            </div>
+                            <!-- CAJA -->
+                        </div>
+                        <!-- COLUMNA DERECHA -->
+                    </div>
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    
+                    <div class="row">
+                    	<div class="col-md-6" align="right"><button type="submit" class="btn btn-primary" ng-disabled="btnen!=true">REGISTRAR</button></div>
+                        <div class="col-md-6" align="left"><button type="reset" class="btn btn-danger" ng-click="Redirigir('Clientes')">CANCELAR</button></div>
+                    </div>
+                    </form>
+                    <!-- FORMULARIO -->
+                </section>
+            </aside>
+
+</div>

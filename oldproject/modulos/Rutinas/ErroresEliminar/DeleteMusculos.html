@@ -1,0 +1,38 @@
+<style type="text/css">
+    .ListaInstructores {margin-left: 4%; margin-top: 0%; visibility:hidden}
+    .Filtros{margin-bottom: 1.5%;}
+    .pleft {padding-left: 0%;}
+</style>
+<table class="table table-striped">
+        <!-- Filtros -->
+    <div class="col-md-12 Filtros pleft">
+        <div class="row">
+            <div class="col-xs-4">
+          <label for="search">Búsqueda:</label>
+          <input ng-model="q" id="search" class="form-control" placeholder="Filtrado">
+        </div>
+        <div class="col-xs-2">
+          <label for="search">Maquinas Por Página:</label>
+          <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+        </div>
+        </div><!-- row -->
+    </div><!-- filtros -->
+    <thead>
+        <tr>	
+            <th class="text-center">CODIGO</th>	
+            <th class="text-center">MUSCULO</th>	
+            <th class="text-center">EJERCICIO</th>	
+        </tr>
+     </thead>
+    <tbody>
+        <tr dir-paginate="eje in ejercicios  | filter:q | itemsPerPage: pageSize" current-page="currentPage"class="text-center">
+            <td>{{eje.id_ejercicio }}</td>
+            <td>{{eje.nb_musculo |uppercase}}</td>
+            <td>{{eje.nb_ejercicio |uppercase}}</td>
+        </tr>
+     </tbody>
+ </table>
+
+ <div class="text-center col-md-12">
+  <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+  </div>

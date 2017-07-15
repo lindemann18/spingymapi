@@ -1,0 +1,124 @@
+<style type="text/css">
+    .CuerpoConsejo{float: right; margin-right: 30%;}
+</style>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Utilidades
+                        <small>Editar Consejos</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li>Utilidades</li>
+                        <li class="active">Editar Consejo</li>
+                    </ol>
+                </section>
+                
+                
+                <!-- Main content -->
+                <section class="content">
+                    <!-- HEADER DEL CONTENIDO-->
+                    <div class="alert alert-danger alert-dismissible col-md-12" role="alert" id="alerta" style="display:none;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Atención!</strong> <p id="ErrorTexto"></p>
+                    </div>
+                    <h4 class="page-header">
+                        Formulario de Conssejos 
+                        <small>
+                            En este apartado podrá Editar los consejos de <span class="text-red">spin gym</span>, para los diferentes tipos de pruebas
+                            que se hacen en el biotest.
+                        </small>
+                    </h4>
+                    <!-- HEADER DEL CONTENIDO-->
+                    <!-- FORMULARIO -->
+                    <div class="col-md-12 Loading" ng-hide="mostrarbuscando!=true">
+                        <h1 class="text-center">Cargando</h1>
+                        <div class="sk-spinner sk-spinner-wandering-cubes">
+                          <div class="sk-cube1"></div>
+                          <div class="sk-cube2"></div>
+                        </div>
+                    </div><!-- loading-->
+                    <form name="clientesRegistrar" id="clientesRegistrar" method="post" role="form" ng-show="mostrarform!=false">
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    <div class="row">
+                        <!-- COLUMNA IZQUIERDA -->
+                        <div class="col-md-6 CuerpoConsejo">
+                            <!-- CAJA -->
+                            <div class="box box-primary">
+                                <!-- HEADER DE LA CAJA -->
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos Del consejo1</h3>
+                                </div>
+                                <!-- HEADER DE LA CAJA -->
+                                    
+                                <!-- CUERPO DE LA CAJA -->
+                                <div class="box-body">
+                                    
+                                
+                                    <div class="form-group">
+                                    
+                                        <label for="nb_cliente">Resultado </label>
+                                        <input type="text" name="Resultado" id="Resultado" campo="Nombres" class="form-control requerido" 
+                                        placeholder="Nombres"  disabled ng-model="consejo.Resultado">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="nb_apellidos">Tipo De Prueba</label>
+                                        <input type="text" name="Tipo_Prueba" id="Tipo_Prueba" class="form-control requerido" 
+                                         disabled ng-model="consejo.nm_prueba">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Consejo </label>
+                                        <textarea name="" id="Consejo" class="form-control requerido"  ng-model="consejo.Consejo" ng-change="countChar()" maxlength="160"></textarea>
+                                        <div id="charNum" >{{lengthad }} Caracteres</div>
+                                        <div><h5>Tiene un límite de 150 a 160 caracteres</h5></div>
+                                    </div>
+                                    
+                                  
+                                </div>
+                                <!-- CUERPO DE LA CAJA -->
+
+                                <!-- FOOTER DE LA CAJA -->
+                                <div class="box-footer">
+                                     Los campos marcados con <span class="text-red"><strong>*</strong></span> son obligatorios.
+                                </div>
+                                <!-- FOOTER DE LA CAJA -->
+                            </div>
+                            <!-- CAJA -->
+                        </div>
+                        <!-- COLUMNA IZQUIERDA -->
+                    </div>
+                    <!-- RENGLON CON EL FORMULARIO Y DOS COLUMNAS-->
+                    
+                    <div class="row">
+                        <div class="col-md-6" align="right"><button type="button" class="btn btn-primary" ng-click="GuardarConsejo()">EDITAR CONSEJO</button></div>
+                        <div class="col-md-6" align="left"><button type="reset" class="btn btn-danger" ng-click="Redirigir('Consejos')">CANCELAR</button></div>
+                    </div>
+                    </form>
+                    <!-- FORMULARIO -->
+                </section>
+            </aside>
+
+</div>
+
+
+<script>
+
+
+function countChar(val) {
+        var len = val.value.length;
+        if (len >= 160) {
+          val.value = val.value.substring(0, 160);
+        } else {
+          $('#charNum').text(160 - len);
+        }
+      };
+
+
+
+
+
+</script>
