@@ -49,10 +49,10 @@ class Consumer
 		}
 	}
  
-	public function users()
+	public function sendGetById($user,$pass)
 	{
 
-		$ch = curl_init("localhost/spingymapi/index.php/users/");
+		$ch = curl_init("localhost/spingymapi/index.php/users/$user/$pass");
 		//a true, obtendremos una respuesta de la url, en otro caso, 
 		//true si es correcto, false si no lo es
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -108,4 +108,4 @@ class Consumer
 }
 
 $curl = new Consumer();
-$curl->users();
+$curl->sendGetById("holis","spingym123");

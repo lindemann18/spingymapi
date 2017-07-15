@@ -1,32 +1,9 @@
 <?php 
 	if(!defined("SPECIALCONSTANT")) die("acceso denegado");
 
-	use Psr\Http\Message\ServerRequestInterface;
-	use Psr\Http\Message\ResponseInterface;
+	
 
-	$app->get("/users/",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
-		try {
-			$Usuarios = null;
-			$conexion = new Conexion();
-			$con        = $conexion->_con();
-			R::begin();
-			    try{
-			       $Usuarios = R::getAll("SELECT * FROM sgusuarios  where sn_activo =1 ORDER BY id ASC");
-			        R::commit();
-			    }
-			    catch(Exception $e) {
-			       $user =  R::rollback();
-			    }
-			R::close();
-			
-			$response->withHeader("Content-type","application/json");
-			$newResponse = $response->withStatus(200);
-			$body = $response->getBody();
-			$body->write(json_encode($Usuarios));
-		} catch (PDOException $e) {
-			echo "Error: ".$e->getMessage();
-		}
-	});
+	include("users.php");
 
 	$app->get("/books/{id}",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
 		$id  = $request->getAttribute('id');
