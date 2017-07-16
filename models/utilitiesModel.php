@@ -8,7 +8,7 @@
 			$message = "";
 			R::begin();
 			    try{
-			       $data = R::getRow($query);
+			       $data = R::getAll($query);
 			        R::commit();
 			    }
 			    catch(Exception $e) {

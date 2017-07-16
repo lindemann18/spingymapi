@@ -17,6 +17,13 @@
 
 			return $response;
 		}
+
+		function GetUsers()
+		{
+			$uModel = new usersModel();
+			$response = $uModel->_ConsultarUsuarios();
+			return $response;
+		}
 	}
 	
  ?>

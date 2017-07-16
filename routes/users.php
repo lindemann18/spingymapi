@@ -39,16 +39,14 @@
 				$user = null;
 				$pass = null;
 				// Verifying headers
-				if(array_key_exists("HTTP_USER",$data) && array_key_exists("HTTP_PASS",$data))
+				$uController  = new utilitiesController();
+				$dataResponse = $uController->validateLoginInfo($data);
+				if(!$dataResponse['error'])
 				{
-					$user   = $data['HTTP_USER'][0];
-					$pass   = $data['HTTP_PASS'][0];
+					// Getting the information.
 					$usersC = new UsersController();
-					$dataResponse = $usersC->LoginUsuario($user,$pass);
-
-				}else{
-					$dataResponse = array("error"=>true,"message"=>"no login information","data"=>"none");
-				}		
+					$dataResponse = $usersC->GetUsers();	
+				}
 				
 				if(!$dataResponse["error"])
 				{

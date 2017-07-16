@@ -10,6 +10,7 @@
 	$con        = $conexion->_con();
 
 	// Controllers
+	require "controllers/utilitiesController.php";
 	require "controllers/usersController.php";
 	//models
 	require "models/utilitiesModel.php";
