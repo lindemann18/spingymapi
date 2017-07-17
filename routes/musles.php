@@ -1,42 +1,15 @@
 <?php 
-	
-	// USER ROUTES
+	// Musles ROUTES
 	use Psr\Http\Message\ServerRequestInterface;
 	use Psr\Http\Message\ResponseInterface;
-
-	// Login Function
-	$app->get("/users/{user}/{pass}",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
-			try {
-				
-				//Getting DAta
-				$user   = $request->getAttribute('user');
-				$pass   = $request->getAttribute('pass');
-				
-				$usersC = new UsersController();
-				$dataResponse = $usersC->LoginUsuario($user,$pass);
-				if(!$dataResponse["error"])
-				{
-					$newResponse = $response->withStatus(200);
-				}else{
-					$newResponse = $response->withStatus(500);
-				}	
-
-				$response->withHeader("Content-type","application/json");
-				$body = $response->getBody();
-				$body->write(json_encode($dataResponse));
-			} catch (PDOException $e) {
-				echo "Error: ".$e->getMessage();
-			}
-		});
-
-
-	// Getting Users function
-	$app->get("/users",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
+	
+	// Getting Musles
+	$app->get("/muscles",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
 			try {
 				
 				//Getting DAta
 				$data   = $request->getHeaders();
-
+				
 				// Verifying headers
 				$uController  = new utilitiesController();
 				$dataResponse = $uController->validateLoginInfo($data);
@@ -44,8 +17,8 @@
 				if(!$dataResponse['error'])
 				{
 					// Getting the information.
-					$usersC = new UsersController();
-					$dataResponse = $usersC->GetUsers();	
+					$MuslesController = new MuslesController();
+					$dataResponse = $MuslesController->_ConsultarMusculos();	
 				}
 				
 				if(!$dataResponse["error"])
@@ -63,57 +36,22 @@
 			}
 		});
 
-		// Getting Users filtered information
-	$app->get("/users/filters",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
-			try {
-				
-				//Getting DAta
-				$data   = $request->getHeaders();
-				$user = null;
-				$pass = null;
-				// Verifying headers
-				$uController  = new utilitiesController();
-				$dataResponse = $uController->validateLoginInfo($data);
-				
-				if(!$dataResponse['error'])
-				{
-					// Getting the information.
-					$usersC = new UsersController();
-					$dataResponse = $usersC->getUsersFiltered();	
-				}
-				
-				if(!$dataResponse["error"])
-				{
-					$newResponse = $response->withStatus(200);
-				}else{
-					$newResponse = $response->withStatus(500);
-				}	
-
-				$response->withHeader("Content-type","application/json");
-				$body = $response->getBody();
-				$body->write(json_encode($dataResponse));
-			} catch (PDOException $e) {
-				echo "Error: ".$e->getMessage();
-			}
-		});
-
-
-	// Get User by ID
-	$app->get("/users/{id}",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
+	$app->get("/muscles/{id}",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
 			try {
 				
 				//Getting DAta
 				$data   = $request->getHeaders();
 				$id  = $request->getAttribute('id');
-				// Verifying heade.rs
+
+				// Verifying headers
 				$uController  = new utilitiesController();
 				$dataResponse = $uController->validateLoginInfo($data);
-				
+
 				if(!$dataResponse['error'])
 				{
 					// Getting the information.
-					$usersC = new UsersController();
-					$dataResponse = $usersC->getUserById($id);	
+					$MuslesController = new MuslesController();
+					$dataResponse = $MuslesController->ConsultarMusculosPorId($id);	
 				}
 				
 				if(!$dataResponse["error"])
@@ -123,7 +61,6 @@
 					$newResponse = $response->withStatus(500);
 				}	
 
-				
 				$response->withHeader("Content-type","application/json");
 				$body = $response->getBody();
 				$body->write(json_encode($dataResponse));
@@ -132,5 +69,36 @@
 			}
 		});
 
-	
+	$app->get("/muscles/routines/{id}",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
+			try {
+				
+				//Getting DAta
+				$data   = $request->getHeaders();
+				$id  = $request->getAttribute('id');
+
+				// Verifying headers
+				$uController  = new utilitiesController();
+				$dataResponse = $uController->validateLoginInfo($data);
+
+				if(!$dataResponse['error'])
+				{
+					// Getting the information.
+					$MuslesController = new MuslesController();
+					$dataResponse = $MuslesController->ConsultarMusculosPorRutina($id);	
+				}
+				
+				if(!$dataResponse["error"])
+				{
+					$newResponse = $response->withStatus(200);
+				}else{
+					$newResponse = $response->withStatus(500);
+				}	
+
+				$response->withHeader("Content-type","application/json");
+				$body = $response->getBody();
+				$body->write(json_encode($dataResponse));
+			} catch (PDOException $e) {
+				echo "Error: ".$e->getMessage();
+			}
+		});
  ?>

@@ -22,9 +22,50 @@
 			return $response;
 		}
 
+		function QueryGetAllOneParam($query,$param)
+		{
+			$error   = "false";
+			$message = "";
+			R::begin();
+			    try{
+			       $data = R::getAll($query,[$param]);
+			        R::commit();
+			    }
+			    catch(Exception $e) {
+			       $error   = "true";
+			       $message = $e;
+			       $data   =  R::rollback();
+			    }
+
+			R::close();
+			$response = array("data"=>$data,"error"=>$error,"message"=>$message);
+			return $response;
+		}
+
+		function QueryGetRowOneParam($query,$param)
+		{
+			$error   = "false";
+			$message = "";
+			R::begin();
+			    try{
+			       $data = R::getRow($query,[$param]);
+			        R::commit();
+			    }
+			    catch(Exception $e) {
+			       $error   = "true";
+			       $message = $e;
+			       $data   =  R::rollback();
+			    }
+
+			R::close();
+			$response = array("data"=>$data,"error"=>$error,"message"=>$message);
+			return $response;
+		}
+
 		function QueryTwoParametersOneRow($param,$param2,$query)
 		{
 			$error = false;
+			$message = null;
 			R::begin();
 			    try{
 			       $data = R::getRow($query,[$param,$param2]);
@@ -32,11 +73,12 @@
 			    }
 			    catch(Exception $e) {
 			       $error = true;
+			       $message = $e;
 			       $data   =  R::rollback();
 			    }
 
 			R::close();
-			$response = array("data"=>$data,"error"=>$error);
+			$response = array("data"=>$data,"error"=>$error,"message"=>$message);
 			return $response;
 		}	
 	}
