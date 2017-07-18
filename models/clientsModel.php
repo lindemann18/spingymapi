@@ -207,5 +207,32 @@
 			$response = $Utilities->QueryGetRowOneParam($query,$id);
 			return $response;
 		}
+
+		function _ConsultarClientesPorEntrenador($id)
+		{
+			$condicion = ($id!="Todos")?"AND clientes.id_usuario_registro = ?":"";
+			$query = '
+				SELECT
+				clientes.id,
+				clientes.nb_cliente,
+				clientes.nb_apellidos,
+				clientes.de_email,
+				clientes.num_celular,
+				usuarios.nb_nombre as "Ins_nombre", 
+				usuarios.nb_apellidos as "Ins_apellido" 
+				FROM sgclientes clientes
+				left join sgusuarios  usuarios on clientes.id_usuario_registro=usuarios.id
+				where clientes.sn_activo=1 '.$condicion.'
+				ORDER BY clientes.id ASC
+			';
+			$Utilities = new Utilities();
+			if($id!="Todos")
+			{
+				$response = $Utilities->QueryGetAllOneParam($query,$id);
+			}else{
+				$response = $Utilities->QueryGetAll($query);
+			}
+			return $response;
+		}
 	}
  ?>

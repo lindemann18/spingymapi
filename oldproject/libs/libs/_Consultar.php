@@ -3,24 +3,7 @@
 	{
 
 		//Queries de Utilidades
-
-
-		function _ConsultartiposPruebas()
-		{
-			R::begin();
-			    try{
-			       $Pruebas = R::getAll('SELECT * FROM sgtipospruebas  ORDER BY id ASC');
-			        R::commit();
-			    }
-			    catch(Exception $e) {
-			       $Pruebas =  R::rollback();
-			    }
-			R::close();
-			return $Pruebas;
-		}//_ConsultartiposPruebas
-
-	
-
+		//niscelaneuos
 		function _ConsultarEdades()
 		{
 			R::begin();
@@ -75,39 +58,8 @@
 
 		//Querys de clientes
 
-		function _ConsultarClientesPorEntrenador($id)
-		{
-			$condicion = ($id!="Todos")?"AND clientes.id_usuario_registro = ?":"";
 
-			$query = '
-				SELECT
-				clientes.id,
-				clientes.nb_cliente,
-				clientes.nb_apellidos,
-				clientes.de_email,
-				clientes.num_celular,
-				usuarios.nb_nombre as "Ins_nombre", 
-				usuarios.nb_apellidos as "Ins_apellido" 
-				FROM sgclientes clientes
-				left join sgusuarios  usuarios on clientes.id_usuario_registro=usuarios.id
-				where clientes.sn_activo=1 '.$condicion.'
-				ORDER BY clientes.id ASC
-			';
-			R::begin();
-			    try{
-			       $respuesta = R::getAll($query,[$id]);
-			        R::commit();
-			    }
-			    catch(Exception $e) {
-			       $respuesta =  R::rollback();
-			       $respuesta = "Error";
-			    }
-			R::close();
-			$respuesta = $this->EjecutarTransaccionAll($query,$id);
-			return $respuesta;
-		}///_ConsultarClientesPorEntrenador
-
-
+		// Módulo de rutinas clientes
 	function _ConsultarRutinasClientesPorIdCliente($id_cliente)
 	{
 		$query='
@@ -128,104 +80,7 @@
 		//Queries de rutinas
 	
 
-	function _ConsultarCategoriaRutinaPorEntrenador($id)
-	{
-		$query= '
-		select DISTINCT
-		cat.id,
-		nb_categoriarutina
-		from sgcategoriasrutina cat
-
-		LEFT JOIN sgrutinas rut ON
-		rut.id_categoriarutina = cat.id
-
-		LEFT JOIN sgusuarios usu ON
-		rut.id_usuariocreacion = usu.id
-
-		where usu.id=? AND rut.sn_activo = 1
-		';
-		$categorias = $this->EjecutarTransaccionAll($query,$id);
-		return $categorias;
-	}//_ConsultarCategoriaRutinaPorEntrenador
-
-	function _ConsultarGenerosRutinaPorEntrenador($id)
-	{
-		$query = '
-				SELECT DISTINCT
-				Gen.nb_tiporutina,
-				Gen.id
-
-				FROM sggenerosrutina Gen
-
-				left JOIN sgrutinas Rut
-				on Rut.id_generorutina = Gen.id
-
-				WHERE Rut.id_usuariocreacion=1
-
-				ORDER BY Gen.id
-		';	
-		//echo $query;
-		$generos = $this->EjecutarTransaccionAll($query,$id);
-		return $generos;
-	}//_ConsultarGenerosRutinaPorEntrenador
-
-	function _ConsultarRutinasFiltradas($entrenador,$tipo_rutina,$genero,$edad,$cuerpo)
-	{
-		//definiendo las condiciones			
-		$condicionent = ($entrenador!="Todos")?"AND Rut.id_usuariocreacion =".$entrenador." ":"";
-		$condiciontip = ($tipo_rutina!="Todos")?"AND Rut.id_categoriarutina =".$tipo_rutina." ":"";
-		$condiciongen = ($genero!="Todos")?"AND Rut.id_generorutina =".$genero." ":"";
-		$condicioned  = ($edad!="Todos")?"AND Rut.id_edad =".$edad." ":"";
-		$condicioncue = ($cuerpo!="Todos")?"AND Rut.id_tipocuerpo =".$cuerpo." ":"";
-
-		//Este querie devuelve TODAS las rutinas ordenadas de principiante hasta avanzado.
-		$query = '
-		SELECT
-		Rut.id as id_rutina,
-		Rut.nb_rutina,
-		Rut.desc_rutina,
-		Rut.fh_creacion,
-		Usu.nb_nombre,
-		Usu.nb_apellidos,
-		Cat.nb_categoriarutina,
-		Gen.id as id_genero,
-		Gen.nb_tiporutina,
-		cuerpo.id as id_cuerpo,
-		cuerpo.nb_cuerpo,
-		edad.nb_edad
-		FROM sgrutinas Rut
-		left JOIN sgusuarios Usu
-		ON Usu.id=Rut.id_usuariocreacion
-		left JOIN sgcategoriasrutina Cat
-		ON Cat.id=Rut.id_categoriarutina
-		LEFT JOIN sggenerosrutina Gen
-		ON Gen.id= Rut.id_generorutina
-		LEFT JOIN sgtipocuerpo cuerpo
-		ON cuerpo.id = Rut.id_tipocuerpo
-		LEFT JOIN sgedad edad
-		ON edad.id = Rut.id_edad
-		where  Rut.sn_activo=1   
-		'.$condicionent.'
-		'.$condiciontip.'
-		'.$condiciongen.'
-		'.$condicioned.'
-		'.$condicioncue.'
-		order by id_rutina asc
-		';
-		R::freeze(1);	
-		R::begin();
-	    try{
-	       $rutinas = R::getAll($query);
-	        R::commit();
-	    }
-	    catch(Exception $e) {
-	       $rutinas =  R::rollback();
-	       $rutinas = "Error";
-	    }
-	R::close();
-	return $rutinas;
-	}//_ConsultarRutinasFiltradas
-
+	// MIscelaneous
 	function _ConsultarTiposCuerpo()
 	{
 		$query='SELECT id,nb_cuerpo from sgtipocuerpo';
@@ -253,6 +108,7 @@
 		return $tipos_rut;
 	}//_ConsultarTiposDeRutina
 
+	//Rutinas
 	function _ConsultarPosicionEjercicioRutina($id_rutina)
 	{
 		 $query = '
@@ -263,6 +119,7 @@
 		return $posicion;
 	}//_ConsultarPosicionEjercicioRutina
 
+	//Rutinas
 	function _ConsultarPosicionEjercicioRutinaCliente($id_rutina)
 	{
 		 $query = '
@@ -273,6 +130,7 @@
 		return $posicion;
 	}//_ConsultarPosicionEjercicioRutina
 
+	// Rutinas
 	function _ConsultarPosicionEjercicioRutinaEdit($id_rutina,$id_dia)
 	{
 		 $query = '
@@ -293,6 +151,7 @@
 			return $posicion;
 	}//_ConsultarPosicionEjercicioRutina
 
+	// Rutinas
 	function _ConsultarPosicionEjercicioRutinaEditDayB($id_rutina,$id_dia)
 	{
 		 $query = '
@@ -312,6 +171,7 @@
 			return $posicion;
 	}//_ConsultarPosicionEjercicioRutina
 
+	// Rutina
 	function _ConsultarInformacionRutinaPreFinalPorId($id)
 	{
 		$query='
@@ -399,6 +259,7 @@
 			return $ejercicios;
 	}//_ConsultarInformacionRutinaPreFinalPorId
 
+	// Rutinas
 	function _ConsultarId_EjercicioPorId_PosicionEjercicio($id_rut, $id_posicion)
 	{
 		$query= '
@@ -424,6 +285,7 @@
 			return $info;
 	}//_ConsultarId_EjercicioPorId_PosicionEjercicio
 
+	// Rutinass
 	function _ConsultarInformacionPorRutinaYDiaRutinas($id_rutina, $id_dia)
 	{
 		$query = '
@@ -492,6 +354,7 @@
 		return $ejercicios;
 	}//_ConsultarInformacionPorRutinaYDia
 
+	// Rutinas clientes
 	function _ConsultarInformacionPorRutinaYDiaRutinasClientes($id_rutina, $id_dia)
 	{
 		$query = '
@@ -561,6 +424,7 @@
 	}//_ConsultarInformacionPorRutinaYDia
 
 
+	// Rutinas
 	function _ConsultarDiasSemana()
 	{
 		$query='select * from sgdias';
@@ -568,6 +432,7 @@
 		return $dias;
 	}//_ConsultarDiasSemana
 
+	// Rutinas
 	function _ConsultarInfoTotalEjerciciosPorIdRutina($id_rutina)
 	{
 		$query='
@@ -577,13 +442,7 @@
 		return $ejercicios;
 	}
 
-	function _ConsultarExistenciaRegistrosLight($id_cliente)
-	{
-		$query= 'SELECT * FROM sgpruebaslight where id_cliente =? ';
-		$result = $this->EjecutarTransaccionSinglerow($query,$id_cliente);
-		return $result;
-	}//_ConsultarExistenciaRegistrosLight
-
+	//Rutinas clientes
 	function _ConsultarId_EjercicioClientePorId_PosicionEjercicio($id_Rutina, $id_Posicion)
 	{
 		$query= '
@@ -608,127 +467,11 @@
 			return $info;		
 	}//_ConsultarId_EjercicioClientePorId_PosicionEjercicio
 
-	function _ConsultarResultadosPruebas($tipo_prueba, $id_cliente)
-	{
-		$query='
-			select * from sgpruebas pruebas 
-			where tipo_prueba= ? 
-			and id_cliente=?  order by pruebas.fecha DESC limit 3
-		';
-		R::freeze(1);
-			R::begin();
-			    try{
-			       $info = R::getAll($query,[$tipo_prueba,$id_cliente]);
-			        R::commit();
-			    }
-			    catch(Exception $e) {
-			       $info =  R::rollback();
-			       $info = "Error";
-			    }
-			R::close();
-			return $info;
-	}
 
-	function _ConsultarResultadosPruebaslight($tipo_prueba, $id_cliente)
-	{
-		$query='
-			select * from sgpruebaslight pruebas 
-			where tipo_prueba=?
-			and id_cliente=? order by pruebas.fh_creacion DESC limit 3
-		';
-		R::freeze(1);
-			R::begin();
-			    try{
-			       $info = R::getAll($query,[$tipo_prueba,$id_cliente]);
-			        R::commit();
-			    }
-			    catch(Exception $e) {
-			       $info =  R::rollback();
-			       $info = "Error";
-			    }
-			R::close();
-			return $info;	
-	}//_ConsultarResultadosPruebaslight
 
-	function _ConsultarResultadosPruebasIMM($tipo_prueba, $id_cliente)
-	{
-		$query='
-			select * from sgpruebaslight pruebas 
-			where tipo_prueba=?
-			and id_cliente=? order by pruebas.fh_creacion DESC limit 12
-		';
-		R::freeze(1);
-			R::begin();
-			    try{
-			       $info = R::getAll($query,[$tipo_prueba,$id_cliente]);
-			        R::commit();
-			    }
-			    catch(Exception $e) {
-			       $info =  R::rollback();
-			       $info = "Error";
-			    }
-			R::close();
-			return $info;	
-	}//_ConsultarResultadosPruebaslight
+	/* here */
 
-	function _ConsultarResultadoPruebaCliente($cliente,$Prueba)
-	{
-		$query='
-			select id,resultado from sgpruebaslight 
-			where id_cliente = ? and tipo_prueba = ? 
-			order by id desc limit 1
-		';
-		R::freeze(1);
-			R::begin();
-			    try{
-			       $info = R::getRow($query,[$cliente,$Prueba]);
-			        R::commit();
-			    }
-			    catch(Exception $e) {
-			       $info =  R::rollback();
-			       $info = "Error";
-			    }
-			R::close();
-			return $info;	
-	}//_ConsultarResultadoPruebaCliente
-
-	function _ConsultarFechaUltimoBiotestRealizado($id_cliente)
-	{
-		$query = '
-			select MAX(fh_creacion) as "Ultimo_Biotest" from sgpruebaslight where id_cliente = ?
-		';
-		$result = $this->EjecutarTransaccionSinglerow($query,$id_cliente);
-		return $result;
-	}//_ConsultarFechaUltimoBiotest
-
-	function _ConsultarUltimoBiotestPruebaLight($id_cliente,$prueba)
-	{
-		$query = '
-			select MAX(fh_creacion) as "Ultimo_Biotest" from sgpruebaslight where id_cliente = ? and tipo_prueba = ?
-		';
-		$result = $this->EjecutarTransaccionSinglerowDoubleParam($query,$id_cliente,$prueba);
-		return $result;
-	}
-
-	function _ConsultarUltimoBiotestPrueba($id_cliente,$prueba)
-	{
-		$query = '
-			select MAX(DATE(fecha)) as "Ultimo_Biotest" from sgpruebas where id_cliente = ? and tipo_prueba = ?
-		';
-		$result = $this->EjecutarTransaccionSinglerowDoubleParam($query,$id_cliente,$prueba);
-		return $result;
-	}
-
-	function _ConsultarFechaUltimoBiotestUltraRealizado($id_cliente)
-	{
-		$query = '
-			select MAX(DATE(fecha)) as "Ultimo_Biotest" from sgpruebas where id_cliente = ?
-		';
-		$result = $this->EjecutarTransaccionSinglerow($query,$id_cliente);
-		return $result;
-	}//_ConsultarFechaUltimoBiotest
-
-		
+		// Biotest
 		function _ConsultarResultadosPruebasReporte($id_prueba, $id_cliente)
 		{
 			$query = '
@@ -764,6 +507,7 @@
 				return $info;	
 		}//_ConsultarResultadosPruebasReporte
 
+		// Biotest
 		function _ConsultarResultadosPruebasReporteUltra($id_prueba, $id_cliente)
 		{
 			$query = '

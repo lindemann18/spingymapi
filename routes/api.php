@@ -11,4 +11,5 @@
 	include("machines.php");
 	include("routinescategories.php");
 	include("routines.php");
+	include("biotest.php");
  ?>

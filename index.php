@@ -20,6 +20,7 @@
 	require "controllers/machinesController.php";
 	require "controllers/routinesCatController.php";
 	require "controllers/routinesController.php";
+	require "controllers/biotestController.php";
 
 	//models
 	require "models/utilitiesModel.php";
@@ -32,6 +33,7 @@
 	require "models/machinesModel.php";
 	require "models/routinesCatModel.php";
 	require "models/routinesModel.php";
+	require "models/biotestModel.php";
 
 	$app->add(function ($req, $res, $next) {
     $response = $next($req, $res);

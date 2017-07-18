@@ -68,4 +68,70 @@
 			}
 		});
 
+	$app->get("/categoryroutines/trainer/{id}",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
+			try {
+				
+				//Getting DAta
+				$data   = $request->getHeaders();
+				$id  = $request->getAttribute('id');
+
+				// Verifying headers
+				$uController  = new utilitiesController();
+				$dataResponse = $uController->validateLoginInfo($data);
+
+				if(!$dataResponse['error'])
+				{
+					// Getting the information.
+					$routinesCatController = new routinesCatController();
+					$dataResponse = $routinesCatController->ConsultarCategoriaRutinaPorEntrenador($id);	
+				}
+				
+				if(!$dataResponse["error"])
+				{
+					$newResponse = $response->withStatus(200);
+				}else{
+					$newResponse = $response->withStatus(500);
+				}	
+
+				$response->withHeader("Content-type","application/json");
+				$body = $response->getBody();
+				$body->write(json_encode($dataResponse));
+			} catch (PDOException $e) {
+				echo "Error: ".$e->getMessage();
+			}
+		});
+
+	$app->get("/categoryroutines/genre/{id}",function(ServerRequestInterface $request, ResponseInterface $response) use($app){
+			try {
+				
+				//Getting DAta
+				$data   = $request->getHeaders();
+				$id  = $request->getAttribute('id');
+
+				// Verifying headers
+				$uController  = new utilitiesController();
+				$dataResponse = $uController->validateLoginInfo($data);
+
+				if(!$dataResponse['error'])
+				{
+					// Getting the information.
+					$routinesCatController = new routinesCatController();
+					$dataResponse = $routinesCatController->ConsultarGenerosRutinaPorEntrenador($id);	
+				}
+				
+				if(!$dataResponse["error"])
+				{
+					$newResponse = $response->withStatus(200);
+				}else{
+					$newResponse = $response->withStatus(500);
+				}	
+
+				$response->withHeader("Content-type","application/json");
+				$body = $response->getBody();
+				$body->write(json_encode($dataResponse));
+			} catch (PDOException $e) {
+				echo "Error: ".$e->getMessage();
+			}
+		});
+
  ?>

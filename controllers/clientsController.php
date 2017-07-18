@@ -56,6 +56,13 @@
 			$response     = $clientsModel->_ConsultarClientInfoRoutine($id);
 			return $response;
 		}
+
+		function ConsultarClientesPorEntrenador($id)
+		{
+			$clientsModel = new clientsModel();
+			$response     = $clientsModel->_ConsultarClientesPorEntrenador($id);
+			return $response;
+		}
 	}
 	
  ?>
